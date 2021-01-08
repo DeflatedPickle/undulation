@@ -5,7 +5,7 @@ plugins {
     id 'com.diffplug.gradle.spotless' version '3.27.0'
 }
 
-group 'org.deflatedpickle'
+group 'com.deflatedpickle'
 archivesBaseName = 'undulation'
 version '1.0.0'
 
