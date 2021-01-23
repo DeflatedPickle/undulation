@@ -8,6 +8,7 @@ plugins {
 group 'com.deflatedpickle'
 archivesBaseName = 'undulation'
 version '1.0.0'
+sourceCompatibility = 1.8
 
 repositories {
     jcenter()
