@@ -1,4 +1,4 @@
-package com.deflatedpickle.rawky.ui.constraints
+package com.deflatedpickle.undulation.constraints
 
 import java.awt.GridBagConstraints
 
