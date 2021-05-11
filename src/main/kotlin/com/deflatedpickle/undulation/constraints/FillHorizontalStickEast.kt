@@ -2,7 +2,7 @@ package com.deflatedpickle.undulation.constraints
 
 import java.awt.GridBagConstraints
 
-object StickEastFillHorizontal : GridBagConstraints() {
+object FillHorizontalStickEast : GridBagConstraints() {
     init {
         anchor = EAST
         fill = HORIZONTAL

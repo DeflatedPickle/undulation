@@ -3,13 +3,10 @@ package com.deflatedpickle.undulation.constraints
 import java.awt.GridBagConstraints
 import java.awt.Insets
 
-object FillHorizontal : GridBagConstraints() {
+object FillBoth : GridBagConstraints() {
     init {
-        anchor = CENTER
-        fill = HORIZONTAL
-        weightx = 1.0
-        gridwidth = 1
-        gridheight = 1
+        anchor = NORTH
+        fill = BOTH
         insets = Insets(2, 2, 2, 2)
     }
 }

@@ -5,7 +5,7 @@ import java.awt.Insets
 
 object FillHorizontalFinishLine : GridBagConstraints() {
     init {
-        anchor = NORTH
+        anchor = CENTER
         fill = HORIZONTAL
         weightx = 1.0
         gridwidth = REMAINDER
