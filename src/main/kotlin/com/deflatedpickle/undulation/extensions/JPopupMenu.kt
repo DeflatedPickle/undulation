@@ -8,11 +8,14 @@ import javax.swing.JMenu
 import javax.swing.JMenuItem
 import javax.swing.JPopupMenu
 
-fun JPopupMenu.add(text: String, icon: Icon? = null, action: (ActionEvent) -> Unit): JMenuItem {
-    val item = JMenuItem(text, icon).apply { addActionListener { action(it) } }
-    this.add(item)
-    return item
-}
+fun JPopupMenu.add(text: String, icon: Icon? = null, index: Int = -1, action: (ActionEvent) -> Unit) =
+    JMenuItem(text, icon).apply {
+        addActionListener { action(it) }
+        this@add.insert(
+            this,
+            if (index == -1) this@add.componentCount else index
+        )
+    }
 
 fun JPopupMenu.disableAll() {
     for (i in this.components) {

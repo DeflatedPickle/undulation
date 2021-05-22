@@ -8,10 +8,13 @@ import javax.swing.JMenu
 import javax.swing.JMenuItem
 import javax.swing.JPopupMenu
 
-fun JMenu.add(text: String, icon: Icon? = null, action: (ActionEvent) -> Unit): JMenuItem =
+fun JMenu.add(text: String, icon: Icon? = null, index: Int = -1, action: (ActionEvent) -> Unit) =
     JMenuItem(text, icon).apply {
         addActionListener { action(it) }
-        this@add.add(this)
+        this@add.insert(
+            this,
+            if (index == -1) this@add.itemCount else index
+        )
     }
 
 fun JMenu.disableAll() {
