@@ -13,8 +13,8 @@ import javax.swing.event.ChangeListener
 
 
 class TagInput : JXPanel() {
-    private val field = JXTextField()
-    internal val tagArea = JXPanel().apply {
+    val field = JXTextField()
+    val tagArea = JXPanel().apply {
         layout = WrapLayout()
     }
 
@@ -28,7 +28,7 @@ class TagInput : JXPanel() {
 
         field.addKeyListener(object : KeyAdapter() {
             override fun keyReleased(e: KeyEvent) {
-                if (e.keyChar == ' ') {
+                if (e.keyChar == ' ' && field.text.isNotBlank()) {
                     tags.add(field.text.dropLast(1))
                     val tagComponent = TagComponent(
                         field.text.dropLast(1),
