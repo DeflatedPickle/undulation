@@ -1,10 +1,11 @@
+/* Copyright (c) 2021 DeflatedPickle under the MIT license */
+
 @file:Suppress("unused", "FunctionName")
 
 package com.deflatedpickle.undulation.widget
 
 import com.deflatedpickle.undulation.constraints.FillHorizontal
 import com.deflatedpickle.undulation.constraints.FillHorizontalFinishLine
-import org.jdesktop.swingx.JXPanel
 import java.awt.GridBagLayout
 import javax.swing.JSlider
 import javax.swing.JSpinner
@@ -13,6 +14,7 @@ import javax.swing.event.ChangeEvent
 import kotlin.math.roundToInt
 import kotlin.reflect.KClassifier
 import kotlin.reflect.typeOf
+import org.jdesktop.swingx.JXPanel
 
 @OptIn(ExperimentalStdlibApi::class)
 inline fun <reified T : Number> SliderSpinner(

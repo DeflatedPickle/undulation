@@ -1,16 +1,17 @@
+/* Copyright (c) 2021 DeflatedPickle under the MIT license */
+
 package com.deflatedpickle.undulation.widget.taginput
 
 import com.deflatedpickle.undulation.constraints.FillBothFinishLine
 import com.deflatedpickle.undulation.constraints.FillHorizontalFinishLine
-import org.jdesktop.swingx.JXPanel
-import org.jdesktop.swingx.JXTextField
-import uk.co.timwise.wraplayout.WrapLayout
 import java.awt.GridBagLayout
 import java.awt.event.KeyAdapter
 import java.awt.event.KeyEvent
 import javax.swing.event.ChangeEvent
 import javax.swing.event.ChangeListener
-
+import org.jdesktop.swingx.JXPanel
+import org.jdesktop.swingx.JXTextField
+import uk.co.timwise.wraplayout.WrapLayout
 
 class TagInput : JXPanel() {
     val field = JXTextField()

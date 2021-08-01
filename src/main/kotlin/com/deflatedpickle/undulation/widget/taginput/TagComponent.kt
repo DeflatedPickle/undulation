@@ -1,10 +1,12 @@
+/* Copyright (c) 2021 DeflatedPickle under the MIT license */
+
 package com.deflatedpickle.undulation.widget.taginput
 
-import org.jdesktop.swingx.JXButton
-import org.jdesktop.swingx.JXLabel
 import java.awt.BorderLayout
 import javax.swing.JPanel
 import javax.swing.event.ChangeEvent
+import org.jdesktop.swingx.JXButton
+import org.jdesktop.swingx.JXLabel
 
 class TagComponent(text: String, input: TagInput) : JPanel() {
     private val label = JXLabel(text)

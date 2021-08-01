@@ -1,7 +1,8 @@
+/* Copyright (c) 2021 DeflatedPickle under the MIT license */
+
 package com.deflatedpickle.undulation.extensions
 
 import javax.swing.JTree
-
 
 fun JTree.expandAll() {
     var j = this.rowCount

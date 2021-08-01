@@ -1,3 +1,5 @@
+/* Copyright (c) 2021 DeflatedPickle under the MIT license */
+
 package com.deflatedpickle.undulation.widget
 
 import com.java2s.ComponentPanel
@@ -15,7 +17,6 @@ class CollapsiblePanel(text: String) : ComponentPanel() {
         this.titleComponent = JXPanel().apply {
             add(JXLabel(text.capitalize()).apply {
                 font = font.deriveFont(16f)
-
             })
             add(JToggleButton(collapse.actionMap[JXCollapsiblePane.TOGGLE_ACTION]).apply {
                 setText("Open")
