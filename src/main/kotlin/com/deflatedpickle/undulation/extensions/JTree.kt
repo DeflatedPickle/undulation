@@ -14,13 +14,13 @@ fun JTree.expandAll() {
         this.expandRow(i)
         i += 1
         // We keep expanding rows, increasing the row count
-        // So we need to keep updating it's value
+        // So we need to keep updating its value
         j = this.rowCount
     }
 }
 
 // https://stackoverflow.com/a/8210759
-fun JTree.find(path: List<Any>): DefaultMutableTreeNode? {
+fun JTree.find(path: Collection<Any>): DefaultMutableTreeNode? {
     val e = (model.root as DefaultMutableTreeNode).depthFirstEnumeration()
     while (e.hasMoreElements()) {
         val node: DefaultMutableTreeNode = e.nextElement() as DefaultMutableTreeNode

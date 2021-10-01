@@ -18,3 +18,17 @@ fun DefaultMutableTreeNode.findNode(obj: Any): DefaultMutableTreeNode? {
     }
     return null
 }
+
+fun DefaultMutableTreeNode.purgeDuplicates() {
+    val list = mutableListOf<String>()
+
+    for (i in children()) {
+        val s = (i as DefaultMutableTreeNode).userObject as String
+        if (s in list) {
+            remove(i)
+        } else {
+            list.add(s)
+        }
+        i.purgeDuplicates()
+    }
+}
