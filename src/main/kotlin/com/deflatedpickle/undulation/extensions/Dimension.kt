@@ -25,3 +25,8 @@ operator fun Dimension.compareTo(size: Dimension): Int =
     if (this.width > size.width || this.height > size.height) 1
     else if (this.width < size.width && this.height < size.height) -1
     else 0
+
+operator fun Dimension.div(value: Int) = Dimension(
+    this.width / value,
+    this.height / value
+)
