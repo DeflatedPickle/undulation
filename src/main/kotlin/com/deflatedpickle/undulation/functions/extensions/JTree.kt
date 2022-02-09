@@ -1,11 +1,9 @@
 /* Copyright (c) 2021 DeflatedPickle under the MIT license */
 
-package com.deflatedpickle.undulation.extensions
+package com.deflatedpickle.undulation.functions.extensions
 
 import javax.swing.JTree
 import javax.swing.tree.DefaultMutableTreeNode
-import javax.swing.tree.TreeNode
-import javax.swing.tree.TreePath
 
 fun JTree.expandAll() {
     var j = this.rowCount

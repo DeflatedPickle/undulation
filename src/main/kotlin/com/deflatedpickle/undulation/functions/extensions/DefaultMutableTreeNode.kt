@@ -2,7 +2,7 @@
 
 @file:Suppress("UNCHECKED_CAST")
 
-package com.deflatedpickle.undulation.extensions
+package com.deflatedpickle.undulation.functions.extensions
 
 import java.util.Enumeration
 import javax.swing.tree.DefaultMutableTreeNode

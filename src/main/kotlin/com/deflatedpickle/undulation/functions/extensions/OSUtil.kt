@@ -1,6 +1,6 @@
 /* Copyright (c) 2021 DeflatedPickle under the MIT license */
 
-package com.deflatedpickle.undulation.extensions
+package com.deflatedpickle.undulation.functions.extensions
 
 import com.deflatedpickle.marvin.util.OSUtil
 import com.deflatedpickle.undulation.util.Filters

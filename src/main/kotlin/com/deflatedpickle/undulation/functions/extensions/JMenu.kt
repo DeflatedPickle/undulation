@@ -1,6 +1,6 @@
 /* Copyright (c) 2020 DeflatedPickle under the MIT license */
 
-package com.deflatedpickle.undulation.extensions
+package com.deflatedpickle.undulation.functions.extensions
 
 import java.awt.event.ActionEvent
 import javax.swing.Icon

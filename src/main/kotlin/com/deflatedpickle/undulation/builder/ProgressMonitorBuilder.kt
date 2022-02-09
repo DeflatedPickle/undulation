@@ -54,7 +54,7 @@ open class ProgressMonitorBuilder(
             var index = 0
             while (index <= steps.size - 1) {
                 val i = steps[index]
-                monitor.note = i.note
+                monitor.note = "${i.note}..."
 
                 last = when (i) {
                     is BasicProgressStep -> i.task(last)

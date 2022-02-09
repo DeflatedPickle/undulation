@@ -1,4 +1,4 @@
-package com.deflatedpickle.undulation.extensions
+package com.deflatedpickle.undulation.functions.extensions
 
 import com.deflatedpickle.marvin.Colour
 import java.awt.Color

@@ -2,7 +2,7 @@
 
 @file:Suppress("unused")
 
-package com.deflatedpickle.undulation.extensions
+package com.deflatedpickle.undulation.functions.extensions
 
 import java.awt.Dimension
 import java.awt.Point
