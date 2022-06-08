@@ -1,8 +1,9 @@
-@file:Suppress("MemberVisibilityCanBePrivate")
+@file:Suppress("MemberVisibilityCanBePrivate", "SpellCheckingInspection")
 
 package com.deflatedpickle.undulation.builder
 
 import com.deflatedpickle.marvin.builder.Builder
+import org.apache.logging.log4j.LogManager
 import java.awt.Window
 import javax.swing.ProgressMonitor
 
@@ -10,6 +11,8 @@ open class ProgressMonitorBuilder(
     open val window: Window,
     var progress: Int = 0,
 ) : Builder<ProgressMonitor> {
+    val logger = LogManager.getLogger()
+
     sealed interface ProgressStep {
         var note: String
     }
@@ -55,6 +58,7 @@ open class ProgressMonitorBuilder(
             while (index <= steps.size - 1) {
                 val i = steps[index]
                 monitor.note = "${i.note}..."
+                logger.debug("Moved to the ${i.note} step")
 
                 last = when (i) {
                     is BasicProgressStep -> i.task(last)
