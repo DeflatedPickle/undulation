@@ -126,7 +126,12 @@ class ActualSliderSpinner<T : Number>(
                 Float::class -> slider.value.toFloat() / 100
                 else -> throw IllegalArgumentException()
             }
-            this.value = slider.value as T
+            this.value = when (clazz) {
+                Int::class -> slider.value
+                Double::class -> slider.value.toDouble() / 100
+                Float::class -> slider.value.toFloat() / 100
+                else -> throw IllegalArgumentException()
+            } as T
         }
 
         spinner.addChangeListener {

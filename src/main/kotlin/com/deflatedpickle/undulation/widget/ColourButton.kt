@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities
 import org.jdesktop.swingx.JXButton
 import org.jdesktop.swingx.painter.CompoundPainter
 import org.jdesktop.swingx.painter.MattePainter
+import javax.swing.event.ChangeEvent
 
 class ColourButton(var color: Color) : JXButton() {
     private val mattePainter = MattePainter(color)
@@ -19,11 +20,15 @@ class ColourButton(var color: Color) : JXButton() {
         backgroundPainter = compoundPainter
 
         addActionListener {
-            color = ColorPickerDialog.showDialog(
+            ColorPickerDialog.showDialog(
                 SwingUtilities.windowForComponent(this),
-                color
-            )
-            mattePainter.fillPaint = color
+                color,
+            )?.let {
+                color = it
+                mattePainter.fillPaint = it
+            }
+
+            changeListeners.forEach { it.stateChanged(ChangeEvent(this)) }
         }
     }
 }
