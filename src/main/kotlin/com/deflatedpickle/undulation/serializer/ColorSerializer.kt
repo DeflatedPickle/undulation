@@ -9,7 +9,8 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import java.awt.Color
 
-@ExperimentalSerializationApi
+
+@OptIn(ExperimentalSerializationApi::class)
 @Serializer(forClass = Color::class)
 object ColorSerializer : KSerializer<Color> {
     override val descriptor = PrimitiveSerialDescriptor(
