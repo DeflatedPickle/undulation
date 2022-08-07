@@ -154,4 +154,9 @@ class ActualSliderSpinner<T : Number>(
         slider.addChangeListener(l)
         spinner.addChangeListener(l)
     }
+
+    override fun setEnabled(enabled: Boolean) {
+        slider.isEnabled = enabled
+        spinner.isEnabled = enabled
+    }
 }
