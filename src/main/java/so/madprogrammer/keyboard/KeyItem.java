@@ -1,10 +1,13 @@
 package so.madprogrammer.keyboard;
 
+import javax.swing.JComponent;
+
 public class KeyItem implements KeyboardItem {
     private final String text;
     private final Integer keyCode;
     private KeyType keyType;
     private KeyConstraint keyConstraint;
+    private JComponent component;
 
     public KeyItem(String text, Integer keyCode) {
         this.text = text;
@@ -38,5 +41,16 @@ public class KeyItem implements KeyboardItem {
     @Override
     public KeyConstraint getKeyConstraint() {
         return keyConstraint;
+    }
+
+    @Override
+    public KeyItem setComponent(JComponent component) {
+        this.component = component;
+        return this;
+    }
+
+    @Override
+    public JComponent getComponent() {
+        return component;
     }
 }

@@ -14,10 +14,15 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -119,26 +124,50 @@ public class Keyboard<T extends AbstractButton> extends JPanel {
                 if (key instanceof KeyItem) {
                     component = supplier.get();
                     ((AbstractButton) component).setText(((KeyItem) key).getText());
+                    ActionListener function = (e) -> {
+                        selectedKey = (KeyItem) key;
+
+                        Window window = SwingUtilities.windowForComponent(this);
+                        window.requestFocus();
+                    };
 
                     switch (((KeyItem) key).getKeyType()) {
                         case CHARACTER:
-                            ((AbstractButton) component).addActionListener(e -> selectedKey = (KeyItem) key);
+                            ((AbstractButton) component).addActionListener(function);
                             characterGroup.add((AbstractButton) component);
                             break;
                         case MODIFIER:
-                            ((AbstractButton) component).addActionListener(e -> selectedModifier = (KeyItem) key);
+                            ((AbstractButton) component).addActionListener(function);
                             modifierGroup.add((AbstractButton) component);
                             break;
                     }
                 } else {
                     component = new JLabel();
                 }
+                key.setComponent(component);
                 add(component, key.getKeyConstraint());
             }
         }
 
-        SwingUtilities.invokeLater(() -> SwingUtilities.windowForComponent(this)
-                .setFocusTraversalPolicy(new KeyboardFocusTraversalPolicy()));
+        SwingUtilities.invokeLater(() -> {
+            Window window = SwingUtilities.windowForComponent(this);
+            window.setFocusTraversalPolicy(new KeyboardFocusTraversalPolicy());
+            window.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    for (KeyboardItem[] value : keys) {
+                        for (KeyboardItem key : value) {
+                            if (key instanceof KeyItem) {
+                                if (e.getKeyCode() == ((KeyItem) key).getKeyCode() && e.getKeyCode() != KeyEvent.VK_ENTER) {
+                                    ((AbstractButton) key.getComponent()).doClick();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            window.requestFocus();
+        });
     }
 
     public static void main(String[] args) {
