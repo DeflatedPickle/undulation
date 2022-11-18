@@ -1,5 +1,6 @@
 package com.deflatedpickle.undulation.serializer
 
+import com.deflatedpickle.undulation.api.FontStyle
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializer
@@ -10,30 +11,36 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import java.awt.Font
 import java.awt.Point
 
 @OptIn(ExperimentalSerializationApi::class)
-@Serializer(forClass = Point::class)
-object PointSerializer : KSerializer<Point> {
+@Serializer(forClass = Font::class)
+object FontSerializer : KSerializer<Font> {
     override val descriptor = PrimitiveSerialDescriptor(
         serialName = "Point",
         kind = PrimitiveKind.STRING,
     )
 
-    override fun serialize(encoder: Encoder, value: Point) =
+    override fun serialize(encoder: Encoder, value: Font) =
         encoder.encodeSerializableValue(
-            MapSerializer(String.serializer(), Int.serializer()),
+            MapSerializer(String.serializer(), String.serializer()),
             mapOf(
-                "x" to value.x,
-                "y" to value.y,
+                "name" to value.name,
+                "style" to FontStyle.values()[value.style].toString(),
+                "size" to value.size.toString()
             )
         )
 
-    override fun deserialize(decoder: Decoder): Point {
+    override fun deserialize(decoder: Decoder): Font {
         val decode = decoder.decodeSerializableValue(
-            MapSerializer(String.serializer(), Int.serializer()),
+            MapSerializer(String.serializer(), String.serializer()),
         )
 
-        return Point(decode["x"] ?: 0, decode["y"] ?: 0)
+        return Font(
+            decode["name"] ?: Font.DIALOG,
+            FontStyle.values().indexOf(decode["style"] ?: FontStyle.PLAIN),
+            (decode["size"] ?: 12).toString().toInt(),
+        )
     }
 }

@@ -12,7 +12,7 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import java.awt.Rectangle
 
-@ExperimentalSerializationApi
+@OptIn(ExperimentalSerializationApi::class)
 @Serializer(forClass = Rectangle::class)
 object RectangleSerializer : KSerializer<Rectangle> {
     override val descriptor = PrimitiveSerialDescriptor(
