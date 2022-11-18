@@ -49,7 +49,7 @@ public class ExtendedComboBox extends JComboBox {
                 JLabel label = new JLabel(value.toString());
                 Font f = label.getFont();
                 label.setFont(f.deriveFont(f.getStyle()
-                        | Font.BOLD | Font.ITALIC));
+                        | Font.BOLD | Font.ITALIC, 16));
                 return label;
             }
         }
