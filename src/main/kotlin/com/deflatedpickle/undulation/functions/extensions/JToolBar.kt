@@ -5,7 +5,7 @@
 package com.deflatedpickle.undulation.functions.extensions
 
 import com.deflatedpickle.undulation.api.ButtonType
-import org.jdesktop.swingx.JXButton
+import com.deflatedpickle.undulation.functions.AbstractButton
 import javax.swing.*
 
 fun JToolBar.add(
@@ -15,15 +15,11 @@ fun JToolBar.add(
     enabled: Boolean = true,
     type: ButtonType = ButtonType.PRESS,
     action: () -> Unit
-): AbstractButton = when (type) {
-    ButtonType.PRESS -> JXButton(text, icon)
-    ButtonType.TOGGLE -> JToggleButton(text, icon)
-    ButtonType.RADIO -> JRadioButton(text, icon)
-}.apply {
-    if (tooltip.isNotEmpty()) {
-        toolTipText = tooltip
-    }
-    isEnabled = enabled
-    addActionListener { action() }
-    this@add.add(this)
-}
+): AbstractButton = AbstractButton(
+    text,
+    icon,
+    tooltip,
+    enabled,
+    type,
+    action
+).apply { this@add.add(this) }
