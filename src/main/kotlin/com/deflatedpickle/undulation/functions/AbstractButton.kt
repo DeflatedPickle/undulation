@@ -10,7 +10,7 @@ fun AbstractButton(
     tooltip: String = "",
     enabled: Boolean = true,
     type: ButtonType = ButtonType.PRESS,
-    action: () -> Unit
+    action: (AbstractButton) -> Unit
 ): AbstractButton = when (type) {
     ButtonType.PRESS -> JXButton(text, icon)
     ButtonType.TOGGLE -> JToggleButton(text, icon)
@@ -20,5 +20,5 @@ fun AbstractButton(
         toolTipText = tooltip
     }
     isEnabled = enabled
-    addActionListener { action() }
+    addActionListener { action(this) }
 }

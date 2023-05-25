@@ -14,7 +14,7 @@ fun JToolBar.add(
     tooltip: String = "",
     enabled: Boolean = true,
     type: ButtonType = ButtonType.PRESS,
-    action: () -> Unit
+    action: (AbstractButton) -> Unit
 ): AbstractButton = AbstractButton(
     text,
     icon,
