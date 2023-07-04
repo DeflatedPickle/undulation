@@ -8,6 +8,7 @@ import org.jdesktop.swingx.JXButton
 import org.jdesktop.swingx.painter.CompoundPainter
 import org.jdesktop.swingx.painter.MattePainter
 import java.awt.Color
+import java.awt.Dimension
 
 open class ColourButton(var color: Color) : JXButton() {
     val mattePainter = MattePainter(color)
@@ -15,5 +16,8 @@ open class ColourButton(var color: Color) : JXButton() {
 
     init {
         backgroundPainter = compoundPainter
+        isBorderPainted = false
+
+        preferredSize = Dimension(20, 20)
     }
 }
