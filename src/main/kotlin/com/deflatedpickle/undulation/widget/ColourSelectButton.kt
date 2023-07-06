@@ -12,9 +12,9 @@ class ColourSelectButton(
         addActionListener {
             ColorPickerDialog.showDialog(
                 SwingUtilities.windowForComponent(this),
-                color,
+                colour,
             )?.let {
-                color = it
+                super.colour = it
                 mattePainter.fillPaint = it
             }
 

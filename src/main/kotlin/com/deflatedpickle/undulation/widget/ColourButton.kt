@@ -10,9 +10,18 @@ import org.jdesktop.swingx.painter.MattePainter
 import java.awt.Color
 import java.awt.Dimension
 
-open class ColourButton(var color: Color) : JXButton() {
-    val mattePainter = MattePainter(color)
-    private val compoundPainter = CompoundPainter<JXButton>(mattePainter)
+open class ColourButton(colour: Color) : JXButton() {
+    var mattePainter = MattePainter(colour)
+    private var compoundPainter = CompoundPainter<JXButton>(mattePainter)
+
+    var colour = colour
+        set(value) {
+            mattePainter = MattePainter(value)
+            compoundPainter = CompoundPainter<JXButton>(mattePainter)
+            backgroundPainter = compoundPainter
+
+            field = value
+        }
 
     init {
         backgroundPainter = compoundPainter
