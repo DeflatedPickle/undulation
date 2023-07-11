@@ -6,6 +6,7 @@ import com.deflatedpickle.undulation.api.MenuButtonType
 import com.deflatedpickle.undulation.api.MenuButtonType.BUTTON
 import com.deflatedpickle.undulation.api.MenuButtonType.CHECK
 import com.deflatedpickle.undulation.api.MenuButtonType.RADIO
+import java.awt.MenuShortcut
 import java.awt.event.ActionEvent
 import javax.swing.Icon
 import javax.swing.JCheckBoxMenuItem
@@ -13,10 +14,14 @@ import javax.swing.JMenu
 import javax.swing.JMenuItem
 import javax.swing.JPopupMenu
 import javax.swing.JRadioButtonMenuItem
+import javax.swing.KeyStroke
+import javax.swing.SwingUtilities
 
 fun JMenu.add(
     text: String,
     icon: Icon? = null,
+    accelerator: KeyStroke? = null,
+    message: String? = null,
     index: Int = -1,
     enabled: Boolean = true,
     type: MenuButtonType = BUTTON,
@@ -27,7 +32,21 @@ fun JMenu.add(
     RADIO -> JRadioButtonMenuItem(text, icon)
 }.apply {
     isEnabled = enabled
+
+    accelerator?.let {
+        mnemonic = accelerator.keyCode
+        setAccelerator(accelerator)
+    }
+
+    message?.let {
+        putClientProperty("statusMessage", message)
+    }
+
     addActionListener { action(it) }
+    addActionListener {
+        SwingUtilities.getWindowAncestor(this)
+    }
+
     this@add.insert(
         this,
         if (index == -1) this@add.itemCount else index
