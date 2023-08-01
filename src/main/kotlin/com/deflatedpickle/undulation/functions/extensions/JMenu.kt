@@ -39,6 +39,7 @@ fun JMenu.add(
     }
 
     message?.let {
+        toolTipText = message
         putClientProperty("statusMessage", message)
     }
 

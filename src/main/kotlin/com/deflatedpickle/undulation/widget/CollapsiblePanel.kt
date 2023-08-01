@@ -2,19 +2,25 @@
 
 package com.deflatedpickle.undulation.widget
 
+import com.deflatedpickle.undulation.constraints.FillBothFinishLine
 import com.java2s.ComponentPanel
 import javax.swing.JToggleButton
 import org.jdesktop.swingx.JXCollapsiblePane
 import org.jdesktop.swingx.JXLabel
 import org.jdesktop.swingx.JXPanel
+import java.awt.BorderLayout
+import java.awt.GridBagLayout
 
 class CollapsiblePanel(text: String) : ComponentPanel() {
     val collapse = JXCollapsiblePane().apply {
+        layout = GridBagLayout()
         isCollapsed = true
     }
 
     init {
-        this.titleComponent = JXPanel().apply {
+        layout = BorderLayout()
+
+        titleComponent = JXPanel().apply {
             add(JXLabel(text.capitalize()).apply {
                 font = font.deriveFont(16f)
             })
@@ -22,6 +28,7 @@ class CollapsiblePanel(text: String) : ComponentPanel() {
                 setText("Open")
             })
         }
-        panel.add(collapse)
+
+        panel.add(collapse, FillBothFinishLine)
     }
 }
