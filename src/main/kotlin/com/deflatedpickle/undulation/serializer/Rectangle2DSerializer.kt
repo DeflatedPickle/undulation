@@ -10,25 +10,33 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import java.awt.Point
+import java.awt.Rectangle
+import java.awt.geom.Rectangle2D
 
 @OptIn(ExperimentalSerializationApi::class)
-@Serializer(forClass = Point::class)
-object PointSerializer : KSerializer<Point> {
-    override fun serialize(encoder: Encoder, value: Point) =
+@Serializer(forClass = Rectangle2D::class)
+object Rectangle2DSerializer : KSerializer<Rectangle2D> {
+    override fun serialize(encoder: Encoder, value: Rectangle2D) =
         encoder.encodeSerializableValue(
-            MapSerializer(String.serializer(), Int.serializer()),
+            MapSerializer(String.serializer(), Double.serializer()),
             mapOf(
                 "x" to value.x,
                 "y" to value.y,
+                "width" to value.width,
+                "height" to value.height,
             )
         )
 
-    override fun deserialize(decoder: Decoder): Point {
+    override fun deserialize(decoder: Decoder): Rectangle2D {
         val decode = decoder.decodeSerializableValue(
-            MapSerializer(String.serializer(), Int.serializer()),
+            MapSerializer(String.serializer(), Double.serializer()),
         )
 
-        return Point(decode["x"] ?: 0, decode["y"] ?: 0)
+        return Rectangle2D.Double(
+            decode["x"] ?: 0.0,
+            decode["y"] ?: 0.0,
+            decode["width"] ?: 0.0,
+            decode["height"] ?: 0.0,
+        )
     }
 }

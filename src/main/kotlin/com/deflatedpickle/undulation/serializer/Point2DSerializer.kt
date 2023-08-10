@@ -1,6 +1,5 @@
 package com.deflatedpickle.undulation.serializer
 
-import com.deflatedpickle.undulation.api.FontStyle
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializer
@@ -11,31 +10,29 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import java.awt.Font
 import java.awt.Point
+import java.awt.geom.Point2D
 
 @OptIn(ExperimentalSerializationApi::class)
-@Serializer(forClass = Font::class)
-object FontSerializer : KSerializer<Font> {
-    override fun serialize(encoder: Encoder, value: Font) =
+@Serializer(forClass = Point2D::class)
+object Point2DSerializer : KSerializer<Point2D> {
+    override fun serialize(encoder: Encoder, value: Point2D) =
         encoder.encodeSerializableValue(
-            MapSerializer(String.serializer(), String.serializer()),
+            MapSerializer(String.serializer(), Double.serializer()),
             mapOf(
-                "name" to value.name,
-                "style" to FontStyle.values()[value.style].toString(),
-                "size" to value.size.toString()
+                "x" to value.x,
+                "y" to value.y,
             )
         )
 
-    override fun deserialize(decoder: Decoder): Font {
+    override fun deserialize(decoder: Decoder): Point2D {
         val decode = decoder.decodeSerializableValue(
-            MapSerializer(String.serializer(), String.serializer()),
+            MapSerializer(String.serializer(), Double.serializer()),
         )
 
-        return Font(
-            decode["name"] ?: Font.DIALOG,
-            FontStyle.values().indexOf(decode["style"] ?: FontStyle.PLAIN),
-            (decode["size"] ?: 12).toString().toInt(),
+        return Point2D.Double(
+            decode["x"] ?: 0.0,
+            decode["y"] ?: 0.0
         )
     }
 }

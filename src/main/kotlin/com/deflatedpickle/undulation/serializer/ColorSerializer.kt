@@ -13,11 +13,6 @@ import java.awt.Color
 @OptIn(ExperimentalSerializationApi::class)
 @Serializer(forClass = Color::class)
 object ColorSerializer : KSerializer<Color> {
-    override val descriptor = PrimitiveSerialDescriptor(
-        serialName = "Color",
-        kind = PrimitiveKind.STRING,
-    )
-
     override fun serialize(encoder: Encoder, value: Color) =
         encoder.encodeString(
             String.format(

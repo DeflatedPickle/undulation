@@ -15,11 +15,6 @@ import java.awt.Rectangle
 @OptIn(ExperimentalSerializationApi::class)
 @Serializer(forClass = Rectangle::class)
 object RectangleSerializer : KSerializer<Rectangle> {
-    override val descriptor = PrimitiveSerialDescriptor(
-        serialName = "Rectangle",
-        kind = PrimitiveKind.STRING,
-    )
-
     override fun serialize(encoder: Encoder, value: Rectangle) =
         encoder.encodeSerializableValue(
             MapSerializer(String.serializer(), Int.serializer()),
