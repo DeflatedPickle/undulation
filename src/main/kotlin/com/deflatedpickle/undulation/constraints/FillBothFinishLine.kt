@@ -7,7 +7,7 @@ import java.awt.Insets
 
 object FillBothFinishLine : GridBagConstraints() {
     init {
-        anchor = NORTH
+        anchor = CENTER
         fill = BOTH
         weightx = 1.0
         weighty = 1.0
