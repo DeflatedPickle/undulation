@@ -17,37 +17,6 @@ import javax.swing.JRadioButtonMenuItem
 import javax.swing.KeyStroke
 import javax.swing.SwingUtilities
 
-fun JMenuItem(
-    text: String,
-    icon: Icon? = null,
-    accelerator: KeyStroke? = null,
-    message: String? = null,
-    enabled: Boolean = true,
-    type: MenuButtonType = BUTTON,
-    action: (ActionEvent) -> Unit
-) = when (type) {
-    BUTTON -> JMenuItem(text, icon)
-    CHECK -> JCheckBoxMenuItem(text, icon)
-    RADIO -> JRadioButtonMenuItem(text, icon)
-}.apply {
-    isEnabled = enabled
-
-    accelerator?.let {
-        mnemonic = accelerator.keyCode
-        setAccelerator(accelerator)
-    }
-
-    message?.let {
-        toolTipText = message
-        putClientProperty("statusMessage", message)
-    }
-
-    addActionListener { action(it) }
-    addActionListener {
-        SwingUtilities.getWindowAncestor(this)
-    }
-}
-
 fun JMenu.add(
     text: String,
     icon: Icon? = null,
