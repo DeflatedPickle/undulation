@@ -1,16 +1,15 @@
 plugins {
     id 'java-library'
 
-    id 'org.jetbrains.kotlin.jvm' version '1.8.21'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.21'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.22'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.9.22'
 
-    id 'com.diffplug.gradle.spotless' version '3.27.0'
+    id 'com.diffplug.spotless' version '6.25.0'
 }
 
 group 'com.deflatedpickle'
 archivesBaseName = 'undulation'
 version '1.2.0'
-sourceCompatibility = targetCompatibility = "11"
 
 repositories {
     mavenCentral()
@@ -34,10 +33,6 @@ dependencies {
     implementation 'org.drjekyll:colorpicker:'
     implementation 'com.formdev:jide-oss:3.7.12'
     implementation 'org.oxbow:swing-bits:1.0.0-SNAPSHOT'
-}
-
-compileKotlin {
-    kotlinOptions.jvmTarget = "11"
 }
 
 spotless {
